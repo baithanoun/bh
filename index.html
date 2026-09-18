@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <base target="_top">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>الاستعلامات وخدمة الجمهور - بيت حانون</title>
+  <style>
+    /* ===== إعادة تعيين ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding: 0;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .container {
+      max-width: 520px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    /* ===== ✅ صورة البانر - بعرض الصفحة بالكامل ===== */
+    .banner-container {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      border-radius: 0;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      background: #2c3e50;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .banner-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      max-height: 280px;
+    }
+
+    /* ===== رسالة بديلة إذا لم تظهر الصورة ===== */
+    .banner-fallback {
+      width: 100%;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+      color: white;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .banner-fallback .icon {
+      font-size: 40px;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    /* ===== البطاقة الرئيسية ===== */
+    .card {
+      background: white;
+      padding: 20px 16px 25px;
+      margin: 0 10px 10px;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      animation: slideUp 0.5s ease-out;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ===== الشعار ===== */
+    .logo {
+      margin-bottom: 6px;
+    }
+
+    .logo-icon {
+      display: inline-block;
+      background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+      color: white;
+      width: 60px;
+      height: 60px;
+      line-height: 60px;
+      border-radius: 50%;
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 4px;
+      box-shadow: 0 5px 20px rgba(231, 76, 60, 0.4);
+    }
+
+    .logo h1 {
+      color: #2c3e50;
+      font-size: 30px;
+      font-weight: 800;
+    }
+
+    .logo .subtitle {
+      color: #7f8c8d;
+      font-size: 20px;
+      font-weight: 500;
+      display: block;
+      margin-top: -2px;
+    }
+
+    /* ===== رأس الخدمة ===== */
+    .service-header {
+      background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+      color: white;
+      padding: 10px 12px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      display: block;
+      margin: 6px 0 8px;
+      letter-spacing: 0.3px;
+      box-shadow: 0 3px 15px rgba(231, 76, 60, 0.3);
+      line-height: 1.6;
+    }
+
+    .service-header span {
+      font-weight: 800;
+      display: inline-block;
+    }
+
+    /* ===== حقل الإدخال ===== */
+    .input-group {
+      margin: 8px 0;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      font-size: 20px;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      text-align: center;
+      outline: none;
+      transition: all 0.3s;
+      direction: ltr;
+      font-weight: bold;
+      letter-spacing: 2px;
+      -webkit-appearance: none;
+      background: #fafafa;
+    }
+
+    input:focus {
+      border-color: #e74c3c;
+      box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.2);
+      background: white;
+    }
+
+    input::placeholder {
+      font-weight: normal;
+      letter-spacing: 0;
+      color: #aaa;
+      font-size: 15px;
+    }
+
+    /* ===== زر البحث ===== */
+    .search-btn {
+      width: 100%;
+      margin-top: 8px;
+      padding: 14px;
+      font-size: 18px;
+      background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+      box-shadow: 0 5px 20px rgba(231, 76, 60, 0.3);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .search-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(231, 76, 60, 0.4);
+    }
+
+    .search-btn:active:not(:disabled) {
+      transform: scale(0.98);
+    }
+
+    .search-btn:disabled {
+      background: #95a5a6;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
+      opacity: 0.7;
+    }
+
+    .search-btn .spinner {
+      display: inline-block;
+      animation: spin 1s linear infinite;
+      margin-left: 8px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* ===== منطقة النتائج ===== */
+    #result {
+      margin-top: 14px;
+      min-height: 40px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .loading {
+      color: #e74c3c;
+      background: #fde8e8;
+      padding: 15px;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .success {
+      background: #e8f8ed;
+      border: 2px solid #27ae60;
+      padding: 10px;
+    }
+
+    .success .status-badge {
+      background: #27ae60;
+      color: white;
+      padding: 6px 15px;
+      border-radius: 30px;
+      display: inline-block;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .confirmed-badge {
+      display: inline-block;
+      background: #2ecc71;
+      color: white;
+      padding: 4px 15px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-right: 8px;
+    }
+
+    .result-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0 5px;
+      font-size: 13px;
+      text-align: right;
+    }
+
+    .result-table td {
+      padding: 7px 5px;
+      border-bottom: 1px solid #eee;
+      background: white;
+    }
+
+    .result-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .result-table .label {
+      font-weight: bold;
+      color: #555;
+      background: #f8f9fa;
+      width: 38%;
+    }
+
+    .result-table .value {
+      color: #2c3e50;
+      width: 62%;
+      word-break: break-word;
+    }
+
+    .search-time {
+      font-size: 11px;
+      color: #999;
+      margin-top: 6px;
+      font-weight: normal;
+    }
+
+    /* ===== أزرار الإجراءات ===== */
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .action-buttons.hidden {
+      display: none !important;
+    }
+
+    .action-buttons .btn-confirm,
+    .action-buttons .whatsapp-link {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 0;
+      padding: 12px;
+      font-size: 14px;
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-confirm {
+      background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+      box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+    }
+
+    .btn-confirm:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(39, 174, 96, 0.4);
+    }
+
+    .btn-confirm:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ===== حالات النتائج ===== */
+    .danger {
+      color: #e74c3c;
+      background: #fde8e8;
+      border: 2px solid #e74c3c;
+      padding: 15px;
+    }
+
+    .not-registered {
+      color: #e67e22;
+      background: #fef5e7;
+      border: 2px solid #e67e22;
+      padding: 15px;
+    }
+
+    .whatsapp-link {
+
+
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      padding: 10px 20px;
+      background: #25D366;
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: bold;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+      -webkit-tap-highlight-color: transparent;
+      cursor: pointer;
+    }
+
+    .whatsapp-link:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
+    }
+
+    .whatsapp-link.disabled {
+      background: #95a5a6;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+
+    .whatsapp-icon {
+      font-size: 22px;
+    }
+
+    /* ===== نموذج تسجيل أسرة جديدة ===== */
+    .register-form {
+      text-align: right;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed #e6c88a;
+    }
+
+    .register-form .form-group {
+      margin-bottom: 10px;
+    }
+
+    .register-form label {
+      display: block;
+      font-size: 13px;
+      color: #856404;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .register-form input,
+    .register-form select,
+    .register-form textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      outline: none;
+      transition: all 0.3s;
+      font-weight: normal;
+      letter-spacing: normal;
+      direction: rtl;
+      text-align: right;
+      background: #fff;
+      font-family: inherit;
+    }
+
+    .register-form input:focus,
+    .register-form select:focus,
+    .register-form textarea:focus {
+      border-color: #e67e22;
+      box-shadow: 0 0 0 4px rgba(230, 126, 34, 0.15);
+    }
+
+    .register-form textarea {
+      resize: vertical;
+      min-height: 50px;
+    }
+
+    .register-form .btn-register {
+      width: 100%;
+      margin-top: 4px;
+      padding: 13px;
+      font-size: 16px;
+      background: linear-gradient(135deg, #e67e22 0%, #f39c12 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+      box-shadow: 0 5px 20px rgba(230, 126, 34, 0.3);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .register-form .btn-register:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .register-divider {
+      margin-top: 14px;
+      font-size: 13px;
+      color: #999;
+    }
+
+    .confirmed-message {
+      background: #d4edda;
+      color: #155724;
+      padding: 15px;
+      border-radius: 12px;
+      border: 2px solid #28a745;
+      margin-top: 12px;
+      font-size: 15px;
+    }
+
+    .confirmed-message .icon {
+      font-size: 28px;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    /* ===== التذييل ===== */
+    .footer {
+      margin-top: 10px;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .footer .record-count {
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* ===== ✅ إشعار واتساب - ثابت ولا يختفي ===== */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #2c3e50;
+      color: white;
+      padding: 18px 24px;
+      border-radius: 16px;
+      font-size: 15px;
+      font-weight: bold;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      z-index: 9999;
+      max-width: 92%;
+      text-align: center;
+      border: 2px solid rgba(255,255,255,0.1);
+      min-width: 280px;
+    }
+
+    .toast.success {
+      background: #27ae60;
+      border-color: #2ecc71;
+    }
+
+    .toast.error {
+      background: #c0392b;
+      border-color: #e74c3c;
+    }
+
+    .toast.info {
+      background: #f39c12;
+      border-color: #e67e22;
+    }
+
+    .toast .close-btn {
+      position: absolute;
+      top: 4px;
+      left: 12px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 22px;
+      cursor: pointer;
+      opacity: 0.7;
+      padding: 0 5px;
+      transition: opacity 0.3s;
+    }
+
+    .toast .close-btn:hover {
+      opacity: 1;
+    }
+
+    .toast.hidden {
+      display: none !important;
+    }
+
+    .toast .toast-icon {
+      font-size: 26px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .toast .toast-sub {
+      font-size: 13px;
+      font-weight: normal;
+      opacity: 0.9;
+      margin-top: 4px;
+      display: block;
+    }
+
+    .toast .toast-time {
+      font-size: 11px;
+      font-weight: normal;
+      opacity: 0.7;
+      margin-top: 6px;
+      display: inline-block;
+      background: rgba(0,0,0,0.2);
+      padding: 3px 14px;
+      border-radius: 20px;
+    }
+
+    /* ===== تحسينات للجوال ===== */
+    @media (max-width: 480px) {
+      .card {
+        padding: 16px 12px 20px;
+        margin: 0 6px 8px;
+        border-radius: 16px;
+      }
+
+      .banner-container {
+        min-height: 60px;
+      }
+
+      .banner-container img {
+        max-height: 160px;
+      }
+
+      .banner-fallback {
+        padding: 20px 15px;
+        font-size: 16px;
+      }
+
+      .banner-fallback .icon {
+        font-size: 28px;
+      }
+
+      .logo-icon {
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        font-size: 22px;
+      }
+
+      .logo h1 {
+        font-size: 17px;
+      }
+
+      .service-header {
+        font-size: 13px;
+        padding: 8px 10px;
+      }
+
+      input {
+        font-size: 17px;
+        padding: 11px;
+      }
+
+      .search-btn {
+        font-size: 16px;
+        padding: 11px;
+      }
+
+      .result-table {
+        font-size: 12px;
+      }
+
+      .result-table td {
+        padding: 5px 3px;
+      }
+
+      .action-buttons {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .action-buttons .btn-confirm,
+      .action-buttons .whatsapp-link {
+        width: 100%;
+        padding: 12px;
+        font-size: 15px;
+      }
+
+      #result {
+        font-size: 14px;
+      }
+
+      .toast {
+        padding: 14px 18px;
+        font-size: 14px;
+        bottom: 12px;
+        max-width: 96%;
+        min-width: auto;
+        border-radius: 14px;
+      }
+
+      .toast .toast-icon {
+        font-size: 22px;
+      }
+
+      .toast .close-btn {
+        font-size: 18px;
+        top: 2px;
+        left: 8px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .card {
+        padding: 12px 8px 16px;
+      }
+
+      .logo h1 {
+        font-size: 15px;
+      }
+
+      input {
+        font-size: 16px;
+        padding: 9px;
+        letter-spacing: 1px;
+      }
+
+      .result-table {
+        font-size: 11px;
+      }
+
+      .result-table td {
+        padding: 4px 2px;
+      }
+
+      .service-header {
+        font-size: 12px;
+        padding: 6px 8px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      body {
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 600px;
+      }
+
+      .banner-container {
+        border-radius: 16px 16px 0 0;
+      }
+
+      .card {
+        border-radius: 0 0 20px 20px;
+        margin: 0;
+      }
+    }
+
+    /* ===============================================================
+       ✅ تعويض العرض الوهمي لتطبيقات Google Apps Script على الجوال
+       Google تعرض الصفحة على الجوال بعرض وهمي ثابت (~785-980px) بدون
+       أي علاقة بعرض الشاشة الحقيقي، ثم تُصغّر الصفحة بالكامل لتناسب
+       الشاشة. هذا النطاق (600-1024px) هو ما يغطي هذا العرض الوهمي.
+       لا ينطبق على الحاسوب (>1024px) ولا على الجوال الذي يعمل بعرض
+       صحيح فعلاً (<600px)، فيبقى كلاهما بالحجم الأصلي دون أي تغيير.
+       =============================================================== */
+    @media (min-width: 600px) and (max-width: 1024px) {
+      body {
+        padding: 10px;
+      }
+
+      .container {
+        max-width: 94vw;
+      }
+
+      .banner-container img {
+        max-height: 560px;
+      }
+
+      .banner-fallback {
+        padding: clamp(40px, 11.5vw, 78px) clamp(20px, 5.75vw, 39px);
+        font-size: clamp(20px, 5vw, 34px);
+      }
+
+      .banner-fallback .icon {
+        font-size: clamp(40px, 10vw, 68px);
+      }
+
+      .card {
+        padding: clamp(20px, 5.75vw, 39px) clamp(16px, 4.6vw, 31px) clamp(25px, 7.19vw, 49px);
+      }
+
+      .logo-icon {
+        font-size: clamp(28px, 7vw, 48px);
+      }
+
+      .logo h1 {
+        font-size: clamp(30px, 7.5vw, 51px);
+      }
+
+      .logo .subtitle {
+        font-size: clamp(20px, 5vw, 34px);
+      }
+
+      .service-header {
+        padding: clamp(10px, 2.88vw, 20px) clamp(12px, 3.45vw, 23px);
+        font-size: clamp(14px, 3.5vw, 24px);
+      }
+
+      input {
+        padding: clamp(14px, 4.03vw, 28px);
+        font-size: clamp(20px, 5vw, 34px);
+      }
+
+      input::placeholder {
+        font-size: clamp(15px, 3.75vw, 26px);
+      }
+
+      .search-btn {
+        padding: clamp(14px, 4.03vw, 28px);
+        font-size: clamp(18px, 4.5vw, 31px);
+      }
+
+      #result {
+        font-size: clamp(15px, 3.75vw, 26px);
+      }
+
+      .loading {
+        padding: clamp(15px, 4.31vw, 30px);
+      }
+
+      .success .status-badge {
+        padding: clamp(6px, 1.73vw, 12px) clamp(15px, 4.31vw, 30px);
+        font-size: clamp(13px, 3.25vw, 22px);
+      }
+
+      .confirmed-badge {
+        font-size: clamp(12px, 3vw, 20px);
+      }
+
+      .result-table {
+        font-size: clamp(13px, 3.25vw, 22px);
+      }
+
+      .result-table td {
+        padding: clamp(7px, 2.01vw, 14px) clamp(5px, 1.44vw, 10px);
+      }
+
+      .search-time {
+        font-size: clamp(11px, 2.75vw, 19px);
+      }
+
+      .action-buttons .btn-confirm,
+      .action-buttons .whatsapp-link {
+        padding: clamp(12px, 3.45vw, 23px);
+        font-size: clamp(14px, 3.5vw, 24px);
+      }
+
+      .danger,
+      .not-registered {
+        padding: clamp(15px, 4.31vw, 30px);
+      }
+
+      .whatsapp-link {
+        padding: clamp(10px, 2.88vw, 20px) clamp(20px, 5.75vw, 39px);
+        font-size: clamp(15px, 3.75vw, 26px);
+      }
+
+      .whatsapp-icon {
+        font-size: clamp(22px, 5.5vw, 37px);
+      }
+
+      .register-form label {
+        font-size: clamp(13px, 3.25vw, 22px);
+      }
+
+      .register-form input,
+      .register-form select,
+      .register-form textarea {
+        padding: clamp(10px, 2.88vw, 20px);
+        font-size: clamp(16px, 4vw, 27px);
+      }
+
+      .register-form .btn-register {
+        padding: clamp(13px, 3.74vw, 25px);
+        font-size: clamp(16px, 4vw, 27px);
+      }
+
+      .register-divider {
+        font-size: clamp(13px, 3.25vw, 22px);
+      }
+
+      .confirmed-message {
+        padding: clamp(15px, 4.31vw, 30px);
+        font-size: clamp(15px, 3.75vw, 26px);
+      }
+
+      .confirmed-message .icon {
+        font-size: clamp(28px, 7vw, 48px);
+      }
+
+      .footer .record-count {
+        font-size: clamp(12px, 3vw, 20px);
+      }
+
+      .toast {
+        padding: clamp(18px, 5.18vw, 36px) clamp(24px, 6.9vw, 47px);
+        font-size: clamp(15px, 3.75vw, 26px);
+      }
+
+      .toast .close-btn {
+        font-size: clamp(22px, 5.5vw, 37px);
+      }
+
+      .toast .toast-icon {
+        font-size: clamp(26px, 6.5vw, 44px);
+      }
+
+      .toast .toast-sub {
+        font-size: clamp(13px, 3.25vw, 22px);
+      }
+
+      .toast .toast-time {
+        font-size: clamp(11px, 2.75vw, 19px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ===== ✅ صورة البانر - بعرض الصفحة بالكامل ===== -->
+  <div class="banner-container" id="bannerContainer">
+    <img
+      src="https://i.imgur.com/5ME2sNa.png"
+      alt="بيت حانون - الاستعلامات وخدمة الجمهور"
+      loading="lazy"
+      width="600"
+      height="200"
+      onerror="this.style.display='none'; document.getElementById('bannerFallback').style.display='flex';"
+    >
+    <div class="banner-fallback" id="bannerFallback" style="display:none;">
+      <span class="icon">🏠</span>
+      بيت حانون
+      <span style="font-size:14px;font-weight:normal;opacity:0.9;display:block;margin-top:4px;">
+        الاستعلامات وخدمة الجمهور
+      </span>
+    </div>
+  </div>
+
+  <div class="card">
+
+    <!-- ===== الشعار ===== -->
+    <div class="logo">    <h1>بيت حانون</h1>
+
+      <span class="subtitle">سجل الأسر المسجلة</span>
+    </div>
+
+    <!-- ===== رأس الخدمة ===== -->
+    <div class="service-header">
+      أهلاً وسهلاً بك في <span>الاستعلامات وخدمة الجمهور</span> - بيت حانون
+    </div>
+
+    <!-- ===== حقل البحث ===== -->
+    <div class="input-group">
+      <label for="idInput" class="sr-only">رقم الهوية</label>
+      <input
+        type="text"
+        id="idInput"
+        maxlength="9"
+        placeholder="📝 أدخل رقم الهوية (9 أرقام)"
+        inputmode="numeric"
+        pattern="[0-9]*"
+        autocomplete="off"
+      >
+    </div>
+
+    <!-- ===== زر البحث ===== -->
+    <button class="search-btn" id="searchBtn" onclick="checkID()">
+      🔍 بحث
+    </button>
+
+    <!-- ===== مكان عرض النتيجة ===== -->
+    <div id="result" role="status" aria-live="polite"></div>
+
+  </div>
+
+  <!-- ===== التذييل ===== -->
+  <div class="footer">
+    <div class="record-count" id="recordCount"></div>
+  </div>
+</div>
+
+<!-- ===== ✅ إشعار واتساب - ثابت ولا يختفي ===== -->
+<div id="toast" class="toast hidden" role="alert" aria-live="assertive">
+  <button class="close-btn" onclick="closeToast()">✕</button>
+  <span class="toast-icon" id="toastIcon">ℹ️</span>
+  <span id="toastMessage">الرسالة</span>
+  <span class="toast-sub" id="toastSub"></span>
+  <span class="toast-time" id="toastTime"></span>
+</div>
+
+<script>
+  // ============================================================
+  // المتغيرات العامة
+  // ============================================================
+  var currentRowIndex = null;
+  var currentIdNumber = null;
+  var isConfirmed = false;
+  var isSearching = false;
+
+  // ============================================================
+  // دالة تنقية النصوص قبل إدراجها كـ HTML (حماية من XSS)
+  // ============================================================
+  function isValidIdChecksum(id) {
+    var digits = id.split('').map(Number);
+    var sum = 0;
+
+    for (var i = 0; i < 8; i++) {
+      var weight = (i % 2 === 0) ? 1 : 2;
+      var value = digits[i] * weight;
+      if (value >= 10) {
+        value = Math.floor(value / 10) + (value % 10);
+      }
+      sum += value;
+    }
+
+    var computedCheck = 10 - (sum % 10);
+    var actualCheck = digits[8] === 0 ? 10 : digits[8];
+
+    return computedCheck === actualCheck;
+  }
+
+  function escapeHtml(value) {
+    var div = document.createElement('div');
+    div.textContent = (value === null || value === undefined) ? '' : String(value);
+    return div.innerHTML;
+  }
+
+  // ============================================================
+  // بناء جدول بيانات النتيجة (مستخدم لكل من الحالة المؤكدة وغير المؤكدة)
+  // ============================================================
+  function buildResultTable(data) {
+    var rows = [
+      ['👨‍👩‍👧‍👦 رب الأسرة', '<strong>' + escapeHtml(data.name || "-") + '</strong>'],
+      ['⚤ الجنس', escapeHtml(data.sex || "-")],
+      ['💍 الحالة الاجتماعية', escapeHtml(data.status || "-")],
+      ['👩 اسم الزوجة', escapeHtml(data.wifeName || "-")],
+      ['🆔 رقم هوية الزوجة', escapeHtml(data.wifeId || "-")],
+      ['🏠 مكان السكن', escapeHtml(data.bhAz || "-")],
+      ['📱 رقم الجوال', escapeHtml(data.mobile || "-")],
+      ['👨‍👩‍👧‍👦 عدد الأفراد', escapeHtml(data.familyCount || "-")]
+    ];
+
+    var html = '<table class="result-table">';
+    rows.forEach(function(row) {
+      html += '<tr><td class="label">' + row[0] + '</td><td class="value">' + row[1] + '</td></tr>';
+    });
+    html += '</table>';
+    return html;
+  }
+
+  // ============================================================
+  // دالة تحميل عدد السجلات
+  // ============================================================
+  function loadRecordCount() {
+    google.script.run
+      .withSuccessHandler(function(count) {
+        var el = document.getElementById('recordCount');
+        if (count > 0) {
+          el.textContent = '📊 ' + count + ' أسرة مسجلة في قاعدة البيانات';
+        } else {
+          el.textContent = '📊 لا توجد أسر مسجلة بعد';
+        }
+      })
+      .withFailureHandler(function() {})
+      .getRecordCount();
+  }
+
+  // ============================================================
+  // ✅ دالة عرض الإشعارات (ثابتة - لا تختفي تلقائياً)
+  // ============================================================
+  function showToast(message, type, subMessage, icon) {
+    var toast = document.getElementById('toast');
+    var toastIcon = document.getElementById('toastIcon');
+    var toastMessage = document.getElementById('toastMessage');
+    var toastSub = document.getElementById('toastSub');
+    var toastTime = document.getElementById('toastTime');
+
+    // تعيين الأيقونة
+    var icons = {
+      'success': '✅',
+      'error': '❌',
+      'info': 'ℹ️',
+      'warning': '⚠️'
+    };
+    toastIcon.textContent = icon || icons[type] || 'ℹ️';
+
+    // تعيين النص
+    toastMessage.textContent = message;
+    toastSub.textContent = subMessage || '';
+
+    // تعيين الوقت الحالي
+    var now = new Date();
+    var timeStr = now.getHours().toString().padStart(2, '0') + ':' +
+                  now.getMinutes().toString().padStart(2, '0');
+    toastTime.textContent = '🕐 ' + timeStr;
+
+    // تعيين النوع
+    toast.className = 'toast ' + type;
+
+    // إظهار الإشعار
+    toast.classList.remove('hidden');
+  }
+
+  // ============================================================
+  // ✅ دالة إغلاق الإشعار
+  // ============================================================
+  function closeToast() {
+    var toast = document.getElementById('toast');
+    toast.classList.add('hidden');
+  }
+
+  // ============================================================
+  // التحميل عند فتح الصفحة
+  // ============================================================
+  window.onload = function() {
+    loadRecordCount();
+    setTimeout(function() {
+      document.getElementById('idInput').focus();
+    }, 500);
+  };
+
+  // ============================================================
+  // دالة البحث الرئيسية
+  // ============================================================
+  function checkID() {
+    if (isSearching) {
+      return;
+    }
+
+    var id = document.getElementById('idInput').value.trim();
+    var resultDiv = document.getElementById('result');
+    var searchBtn = document.getElementById('searchBtn');
+
+    if (id.length !== 9 || isNaN(id)) {
+      resultDiv.className = "danger";
+      resultDiv.innerHTML = "⚠️ يرجى إدخال رقم هوية صحيح مكون من 9 أرقام";
+      return;
+    }
+
+    if (!isValidIdChecksum(id)) {
+      resultDiv.className = "danger";
+      resultDiv.innerHTML = "⚠️ رقم الهوية غير صحيح";
+      return;
+    }
+
+    isSearching = true;
+    searchBtn.disabled = true;
+    searchBtn.innerHTML = '⏳ <span class="spinner">⟳</span> جاري البحث...';
+
+    currentIdNumber = id;
+
+    resultDiv.className = "loading";
+    resultDiv.innerHTML = "⏳ جاري البحث في قاعدة البيانات...";
+
+    google.script.run
+      .withSuccessHandler(function(response) {
+        console.log("Response:", response);
+
+        isSearching = false;
+        searchBtn.disabled = false;
+        searchBtn.innerHTML = '🔍 بحث';
+
+        if (response.status === "مسجل") {
+          var data = response.data || {};
+          var time = response.searchTime || 0;
+          currentRowIndex = response.rowIndex;
+          isConfirmed = response.isConfirmed || false;
+
+          var html = '';
+          var tableHtml = buildResultTable(data);
+
+          if (isConfirmed) {
+            html += `
+              <div class="status-badge">✅ مسجل <span class="confirmed-badge">✓ مؤكد</span></div>
+              ${tableHtml}
+              <div class="search-time">⏱️ تم البحث في ${time} مللي ثانية</div>
+              <div class="confirmed-message">
+                <span class="icon">✅</span>
+                هذا السجل <strong>مؤكد</strong> بالفعل<br>
+                <span style="font-size: 13px; font-weight: normal; color: #28a745;">
+                  تم تأكيد تسجيل هذه الأسرة مسبقاً
+                </span>
+              </div>
+            `;
+          } else {
+            html += `
+              <div class="status-badge">✅ مسجل</div>
+              ${tableHtml}
+              <div class="search-time">⏱️ تم البحث في ${time} مللي ثانية</div>
+              <div class="action-buttons">
+                <button class="btn-confirm" onclick="confirmRegistration()">
+                  ✅ تأكيد التسجيل
+                </button>
+                <a href="#" onclick="editOnWhatsApp(); return false;" class="whatsapp-link">
+                  <span class="whatsapp-icon">💬</span> تعديل عبر واتساب
+                </a>
+              </div>
+            `;
+          }
+
+          resultDiv.className = "success";
+          resultDiv.innerHTML = html;
+
+        } else if (response.status === "غير مسجل") {
+          var time = response.searchTime || 0;
+
+          resultDiv.className = "not-registered";
+          resultDiv.innerHTML = `
+            ❌ <strong>غير مسجل</strong> في قاعدة البيانات
+            <br><br>
+            <span style="font-size: 14px; font-weight: normal;">
+              يمكنك تسجيل بيانات أسرتك مباشرة عبر النموذج التالي:
+            </span>
+
+            <div class="register-form" id="registerForm">
+              <div class="form-group">
+                <label for="regName">👤 الاسم الرباعي لرب الأسرة</label>
+                <input type="text" id="regName" placeholder="الاسم الرباعي" autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label for="regMobile">📱 رقم الجوال</label>
+                <input type="tel" id="regMobile" placeholder="05XXXXXXXX" inputmode="tel" maxlength="10" autocomplete="off">
+              </div>
+                <div class="form-group">
+                <label for="regGovernorate">🗺️ محافظة النزوح</label>
+                <select id="regGovernorate">
+                  <option value="" disabled selected>محافظة النزوح الحالية</option>
+                  <option value="محافظة الشمال">محافظة الشمال</option>
+                  <option value="محافظة غزة">محافظة غزة</option>
+                  <option value="محافظة الوسطى">محافظة الوسطى</option>
+                  <option value="محافظة خانيونس">محافظة خانيونس</option>
+                  <option value="محافظة رفح">محافظة رفح</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="regShelter">🏕️ اسم مركز الإيواء / المخيم</label>
+                <input type="text" id="regShelter" placeholder="اسم مركز الإيواء أو المخيم" autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label for="regAddress">🏠 العنوان</label>
+                <input type="text" id="regAddress" placeholder="العنوان بالتفصيل" autocomplete="off">
+              </div>
+
+              <div class="form-group">
+                <label for="regNotes">📝 ملاحظات (اختياري)</label>
+                <textarea id="regNotes" rows="2" placeholder="أي ملاحظات إضافية"></textarea>
+              </div>
+              <button class="btn-register" id="registerBtn" onclick="submitRegistration()">
+                ✅ تسجيل جديد
+              </button>
+            </div>
+
+            <div class="register-divider">
+              أو
+              <br>
+              <a href="#" onclick="openWhatsAppForRegister('${id}'); return false;" class="whatsapp-link" style="margin-top:8px;">
+                <span class="whatsapp-icon">💬</span>
+                تواصل معنا عبر واتساب
+              </a>
+            </div>
+            <div class="search-time" style="margin-top:10px;">⏱️ تم البحث في ${time} مللي ثانية</div>
+          `;
+
+        } else {
+          resultDiv.className = "danger";
+          resultDiv.innerHTML = "⚠️ " + (response.message || "حدث خطأ غير متوقع");
+        }
+      })
+      .withFailureHandler(function(error) {
+        console.error("Error:", error);
+
+        isSearching = false;
+        searchBtn.disabled = false;
+        searchBtn.innerHTML = '🔍 بحث';
+
+        resultDiv.className = "danger";
+        resultDiv.innerHTML = "⚠️ حدث خطأ في الاتصال: " + error.message;
+      })
+      .searchID(id);
+  }
+
+  // ============================================================
+  // ✅ تسجيل أسرة جديدة مباشرة في شيت NEW_P
+  // ============================================================
+  function submitRegistration() {
+    var nameInput = document.getElementById('regName');
+    var mobileInput = document.getElementById('regMobile');
+    var addressInput = document.getElementById('regAddress');
+    var governorateInput = document.getElementById('regGovernorate');
+    var shelterInput = document.getElementById('regShelter');
+    var notesInput = document.getElementById('regNotes');
+    var registerBtn = document.getElementById('registerBtn');
+
+    var name = nameInput.value.trim();
+    var mobile = mobileInput.value.replace(/\D/g, '');
+    var address = addressInput.value.trim();
+    var governorate = governorateInput.value;
+    var shelter = shelterInput.value.trim();
+    var notes = notesInput.value.trim();
+
+    if (!name) {
+      showToast("⚠️ يرجى إدخال الاسم الرباعي لرب الأسرة", "error", "", "⚠️");
+      nameInput.focus();
+      return;
+    }
+    if (mobile.length !== 10) {
+      showToast("⚠️ رقم الجوال يجب أن يتكون من 10 أرقام", "error", "", "⚠️");
+      mobileInput.focus();
+      return;
+    }
+    if (!governorate) {
+      showToast("⚠️ يرجى اختيار المحافظة", "error", "", "⚠️");
+      governorateInput.focus();
+      return;
+    }
+
+    registerBtn.disabled = true;
+    registerBtn.innerHTML = '⏳ <span class="spinner">⟳</span> جاري الإرسال...';
+
+    google.script.run
+      .withSuccessHandler(function(response) {
+        registerBtn.disabled = false;
+        registerBtn.innerHTML = '✅ تسجيل الأسرة الآن';
+
+        if (response.success) {
+          showToast(response.message, "success", "سيتم مراجعة الطلب والتواصل معكم", "✅");
+
+          var formDiv = document.getElementById('registerForm');
+          if (formDiv) {
+            formDiv.innerHTML = `
+              <div class="confirmed-message">
+                <span class="icon">✅</span>
+                <strong>تم إرسال بياناتك بنجاح!</strong><br>
+                <span style="font-size: 13px; font-weight: normal; color: #28a745;">
+                  سيتم مراجعة الطلب والتواصل معكم قريباً
+                </span>
+              </div>
+            `;
+          }
+        } else {
+          showToast(response.message, "error", "يرجى المحاولة مرة أخرى", "❌");
+        }
+      })
+      .withFailureHandler(function(error) {
+        registerBtn.disabled = false;
+        registerBtn.innerHTML = '✅ تسجيل الأسرة الآن';
+        showToast("❌ حدث خطأ: " + error.message, "error", "يرجى المحاولة مرة أخرى", "❌");
+      })
+      .submitNewRegistration({
+        hofId: currentIdNumber,
+        hofName: name,
+        hofMobile: mobile,
+        hofAddress: address,
+        hofGovernorate: governorate,
+        hofShelter: shelter,
+        hofNotes: notes
+      });
+  }
+
+  // ============================================================
+  // ✅ فتح واتساب للتسجيل - يتبدل الرقم مع كل ضغطة (مشترك بين كل الزوار)
+  // ============================================================
+  function openWhatsAppForRegister(id) {
+    var newTab = window.open('', '_blank');
+    google.script.run
+      .withSuccessHandler(function(whatsappNumber) {
+        var message = "السلام عليكم، أرغب في تسجيل أسرتي في سجل بيت حانون:\n\nرقم الهوية: " + id;
+        var url = "https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message);
+        if (newTab) {
+          newTab.location.href = url;
+        } else {
+          window.open(url, '_blank');
+        }
+      })
+      .withFailureHandler(function() {
+        if (newTab) { newTab.close(); }
+        showToast('❌ حدث خطأ، يرجى المحاولة لاحقاً', 'error', 'تأكد من اتصالك بالإنترنت', '❌');
+      })
+      .getNextWhatsAppNumber();
+  }
+
+  // ============================================================
+  // تأكيد التسجيل
+  // ============================================================
+  function confirmRegistration() {
+    if (currentRowIndex === null || currentRowIndex === undefined) {
+      showToast("❌ لا يوجد سجل للتأكيد", "error", "يرجى البحث أولاً", "❌");
+      return;
+    }
+
+    var confirmBtn = document.querySelector('.btn-confirm');
+    confirmBtn.disabled = true;
+    confirmBtn.textContent = '⏳ جاري التأكيد...';
+
+    google.script.run
+      .withSuccessHandler(function(response) {
+        if (response.success) {
+          showToast(response.message, "success", "تم تحديث حالة السجل", "✅");
+
+          var actionButtons = document.querySelector('.action-buttons');
+          if (actionButtons) {
+            actionButtons.classList.add('hidden');
+          }
+
+          var resultDiv = document.getElementById('result');
+          var confirmedMessage = document.createElement('div');
+          confirmedMessage.className = 'confirmed-message';
+          confirmedMessage.innerHTML = `
+            <span class="icon">✅</span>
+            <strong>تم تأكيد التسجيل بنجاح!</strong><br>
+            <span style="font-size: 13px; font-weight: normal; color: #28a745;">
+              تم تحديث حالة السجل إلى "مؤكد"
+            </span>
+          `;
+          resultDiv.appendChild(confirmedMessage);
+
+          var badge = document.querySelector('.status-badge');
+          if (badge) {
+            badge.innerHTML = '✅ مسجل <span class="confirmed-badge">✓ مؤكد</span>';
+          }
+
+        } else {
+          showToast(response.message, "error", "يرجى المحاولة مرة أخرى", "❌");
+          confirmBtn.disabled = false;
+          confirmBtn.textContent = '✅ تأكيد التسجيل';
+        }
+      })
+      .withFailureHandler(function(error) {
+        showToast("❌ حدث خطأ: " + error.message, "error", "يرجى المحاولة مرة أخرى", "❌");
+        confirmBtn.disabled = false;
+        confirmBtn.textContent = '✅ تأكيد التسجيل';
+      })
+      .confirmRegistration(currentRowIndex);
+  }
+
+  // ============================================================
+  // ✅ تعديل عبر واتساب - يتبدل الرقم مع كل ضغطة (مشترك بين كل الزوار)
+  // ============================================================
+  function editOnWhatsApp() {
+    var newTab = window.open('', '_blank');
+    var nameElement = document.querySelector('.value strong');
+    var name = nameElement ? nameElement.textContent : "";
+
+    google.script.run
+      .withSuccessHandler(function(whatsappNumber) {
+        var message = "السلام عليكم، أرغب في تعديل بيانات أسرتي المسجلة في سجل بيت حانون:\n\nرقم الهوية: " + (currentIdNumber || "") + "\nاسم رب الأسرة: " + name + "\n\nيرجى التواصل معي لتعديل البيانات.";
+        var url = "https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message);
+        if (newTab) {
+          newTab.location.href = url;
+        } else {
+          window.open(url, '_blank');
+        }
+      })
+      .withFailureHandler(function() {
+        if (newTab) { newTab.close(); }
+        showToast('❌ حدث خطأ، يرجى المحاولة لاحقاً', 'error', 'تأكد من اتصالك بالإنترنت', '❌');
+      })
+      .getNextWhatsAppNumber();
+  }
+
+  // ============================================================
+  // البحث بالضغط على Enter
+  // ============================================================
+  document.getElementById('idInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      checkID();
+    }
+  });
+</script>
+
+</body>
+</html>
